@@ -1,38 +1,36 @@
-# pip install python-dotenv
-# pip install langchain-openai
-# pip install streamlit
-
-# from dotenv import load_dotenv
-# import os
-
-# .env 파일 로드
-# load_dotenv()
-
-# 환경 변수에서 API 키 가져오기
-# api_key = os.getenv("OPENAI_API_KEY")
-# if not api_key:
-#     raise ValueError("Error: OPENAI_API_KEY is not set in the .env file")
-
-from langchain_openai import ChatOpenAI
-
-# ChatOpenAI 모델 설정
-chat_model = ChatOpenAI()
-# chat_model = ChatOpenAI(openai_api_key=api_key)
-
-# 모델 호출 테스트
-# try:
-#     result = chat_model.invoke("hello")
-#     print(result.content)
-# except Exception as e:
-#     print("Error:", e)
-    
 import streamlit as st
+from sidebar import show_sidebar
 
-st.title("인공지능 시인")
-subject = st.text_input("시의 주제를 입력해주세요!")
-st.write("시의 주제 : " + subject)
+show_sidebar()
 
-if st.button("시 작성"):
-    with st.spinner("시 작성중..."):
-        result = chat_model.invoke(subject + "에 대한 시를 써줘")
-        st.write(result.content)
+# Title
+st.markdown("<h1 style='text-align: center;'>📖 What is AI Poet?</h1>", unsafe_allow_html=True)
+
+# Add space below the main title
+st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+
+# Animated Description with Purple Keywords
+st.markdown("""
+<div style="
+    font-size: 20px; 
+    line-height: 1.8; 
+    text-align: center; 
+    animation: fadeMove 3s infinite;">
+    <b class="purple-keyword">AI Poet</b> is a creative project that uses 
+    <b class="purple-keyword">artificial intelligence</b> to generate poems <br>
+    based on <b class="purple-keyword">user input</b>. You can 
+    <b class="purple-keyword">write poems</b>, explore <b class="purple-keyword">topics</b>, and read 
+    <b class="purple-keyword">inspiring articles</b>.
+</div>
+
+<style>
+/* Animation for the fadeMove effect */
+@keyframes fadeMove {
+    0% { opacity: 1; transform: translateY(0px); }
+    50% { opacity: 0.5; transform: translateY(-5px); }
+    100% { opacity: 1; transform: translateY(0px); }
+}
+
+
+</style>
+""", unsafe_allow_html=True)
